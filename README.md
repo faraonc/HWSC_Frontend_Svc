@@ -32,3 +32,6 @@ npm run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# todo
+quick note: when enabling stylelint under preference, also enable processing js files
