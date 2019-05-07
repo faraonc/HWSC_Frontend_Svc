@@ -1,11 +1,11 @@
-// globally available css, import scss in property data
+// globally available css, import styles in property data
 // example:
 // `
-//   @import "@/scss/_media-queries.scss";
-//   @import "@/scss/_fonts.scss";
-//   @import "@/scss/_variables.scss";
-//   @import "@/scss/_functions.scss";
-//   @import "@/scss/_mixins.scss";
+//   @import "@/styles/_media-queries.styles";
+//   @import "@/styles/_fonts.styles";
+//   @import "@/styles/_variables.styles";
+//   @import "@/styles/_functions.styles";
+//   @import "@/styles/_mixins.styles";
 //   ... etc
 // `,
 module.exports = {
