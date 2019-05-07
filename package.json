@@ -1,10 +1,12 @@
 {
   "name": "hwsc-frontend",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:dev": "vue-cli-service build --mode development",
+    "build:test": "vue-cli-service build --mode test",
     "lint": "vue-cli-service lint",
     "lint:css": "stylelint --fix 'src/**/*.vue'",
     "test:e2e": "vue-cli-service test:e2e",
