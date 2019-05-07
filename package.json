@@ -8,7 +8,7 @@
     "build:dev": "vue-cli-service build --mode development",
     "build:test": "vue-cli-service build --mode test",
     "lint": "vue-cli-service lint",
-    "lint:css": "stylelint --fix 'src/**/*.vue'",
+    "lint:css": "stylelint --fix 'src/**/*.vue', 'src/assets/scss/*.scss'",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },
