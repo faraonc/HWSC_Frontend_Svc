@@ -125,9 +125,9 @@ will open up a browser control panel to:
 <br>
 
 ## Typescript Debugging
-`sourceMap` is enabled in `tsconfig.json`, so you can debug in the actual TS files 
+`sourceMap` is enabled in `tsconfig.json`, so you can debug using browser dev tools 
 
-[What is sourceMap?](https://stackoverflow.com/questions/17493738/what-is-a-typescript-map-file)
+[What is sourceMap?](https://www.youtube.com/watch?v=1ZmOTPeZQTM)
 
 ## Helpful Links
 [Browser compatibility List](https://browserl.ist/)
