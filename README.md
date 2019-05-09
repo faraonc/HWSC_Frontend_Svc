@@ -2,6 +2,7 @@
 
 ## Global Tools
 Needed to install `vue-cli plugins` and using `vue ui`
+
 At the time of this writing, Vue CLI version was `v4.0.0-alpha.0`.
 
 ```
