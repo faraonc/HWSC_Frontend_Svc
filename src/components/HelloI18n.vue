@@ -1,5 +1,5 @@
 <template>
-  <p>{{ $t('message') }}</p>
+  <p>{{ $t('main-view.message') }}</p>
 </template>
 
 <script lang="ts">
