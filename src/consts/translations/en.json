@@ -1,0 +1,9 @@
+{
+  "common": {
+    "appname": "HWSC",
+    "search": "Search"
+  },
+  "main-view": {
+    "message": "hello i18n !! - @:common.appname"
+  }
+}

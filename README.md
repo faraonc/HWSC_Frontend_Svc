@@ -1,5 +1,11 @@
 # hwsc-frontend
 
+## Coding Rules & Guidelines
+Read through 
+[Frontend's wiki pages](https://hwsc-org.github.io/wikis/frontend-svc/general.html)
+
+<br>
+
 ## Global Tools
 Needed to install `vue-cli plugins` and using `vue ui`
 
