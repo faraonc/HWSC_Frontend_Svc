@@ -1,5 +1,10 @@
 <template>
-  <p>{{ $t('main-view.message') }}</p>
+  <div>
+    <p>{{ $t('main-view.message') }}</p>
+    <br><br>
+    <br><br>
+    <p v-t="'main-view.message'"></p>
+  </div>
 </template>
 
 <script lang="ts">
