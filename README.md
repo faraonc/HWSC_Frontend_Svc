@@ -1,5 +1,11 @@
 # hwsc-frontend
 
+## Coding Rules & Guidelines
+Read through 
+[Frontend's wiki pages](https://hwsc-org.github.io/wikis/frontend-svc/general.html)
+
+<br>
+
 ## Global Dependencies
 At the time of this writing, Vue CLI version was `v4.0.0-alpha.0`.
 
