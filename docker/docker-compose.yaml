@@ -7,7 +7,11 @@ services:
     depends_on:
       - "postgres"
       - "user-svc"
-    command: bash -c "sleep 35;"
+    volumes:
+      - ./docker-wait-for-usersvc.sh:/docker-wait-for-usersvc.sh
+    entrypoint:
+      - /docker-wait-for-usersvc.sh
+    command: ["user-svc", "go run main.go"]
     environment:
       - hosts_app_address
       - hosts_app_port
@@ -19,12 +23,16 @@ services:
       - "50052:50052"
     depends_on:
       - "postgres"
-    command: ["./docker-wait-for-postgres.sh", "go", "run", "main.go"]
+    volumes:
+      - ./docker-wait-for-postgres.sh:/docker-wait-for-postgres.sh
+    entrypoint:
+     - /docker-wait-for-postgres.sh
+    command: ["postgres", "go run main.go"]
     environment:
       - hosts_user_address
       - hosts_user_port
       - hosts_user_network
-      - hosts_postgres_host
+      - hosts_postgres_host=postgres
       - hosts_postgres_db
       - hosts_postgres_user
       - hosts_postgres_password
@@ -39,8 +47,5 @@ services:
     container_name: "dev-postgres"
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=$hosts_postgres_password
-      - POSTGRES_DB=$hosts_postgres_db
 
 
