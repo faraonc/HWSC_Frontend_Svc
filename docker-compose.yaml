@@ -1,0 +1,46 @@
+version: '3'
+services:
+  app-gateway-svc:
+    image: "hwsc/hwsc-app-gateway-svc:int"
+    ports:
+      - "50055:50055"
+    depends_on:
+      - "postgres"
+      - "user-svc"
+    command: bash -c "sleep 35;"
+    environment:
+      - hosts_app_address
+      - hosts_app_port
+      - hosts_app_network
+  user-svc:
+    image: "hwsc/hwsc-user-svc:int"
+    container_name: "dev-user-svc"
+    ports:
+      - "50052:50052"
+    depends_on:
+      - "postgres"
+    command: ["./docker-wait-for-postgres.sh", "go", "run", "main.go"]
+    environment:
+      - hosts_user_address
+      - hosts_user_port
+      - hosts_user_network
+      - hosts_postgres_host
+      - hosts_postgres_db
+      - hosts_postgres_user
+      - hosts_postgres_password
+      - hosts_postgres_sslmode
+      - hosts_postgres_port
+      - hosts_smtp_host
+      - hosts_smtp_port
+      - hosts_smtp_username
+      - hosts_smtp_password
+  postgres:
+    image: "hwsc/hwsc-user-svc-psql:int"
+    container_name: "dev-postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=$hosts_postgres_password
+      - POSTGRES_DB=$hosts_postgres_db
+
+
