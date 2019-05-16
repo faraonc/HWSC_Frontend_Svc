@@ -43,7 +43,7 @@ services:
       - hosts_smtp_username
       - hosts_smtp_password
   postgres:
-    image: "hwsc/hwsc-user-svc-psql:int"
+    image: "hwsc/hwsc-user-svc-psql:test-int"
     container_name: "dev-postgres"
     ports:
       - "5432:5432"
