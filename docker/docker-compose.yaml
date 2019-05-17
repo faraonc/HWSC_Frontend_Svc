@@ -1,4 +1,7 @@
 version: '3'
+
+# example: environment > hosts_user_address=user_svc
+# the "user_svc" refers to the service named "user-svc" docker-compose started up
 services:
   app-gateway-svc:
     image: "hwsc/hwsc-app-gateway-svc:int"
@@ -8,14 +11,17 @@ services:
       - "postgres"
       - "user-svc"
     volumes:
-      - ./docker-wait-for-usersvc.sh:/docker-wait-for-usersvc.sh
+      - ./docker-wait-for-it.sh:/docker-wait-for-it.sh
     entrypoint:
-      - /docker-wait-for-usersvc.sh
-    command: ["user-svc", "go run main.go"]
+      - /docker-wait-for-it.sh
+    command: ["10", "user-svc", "go run main.go"]
     environment:
       - hosts_app_address
       - hosts_app_port
       - hosts_app_network
+      - hosts_user_address=user-svc
+      - hosts_user_port
+      - hosts_user_network
   user-svc:
     image: "hwsc/hwsc-user-svc:int"
     container_name: "dev-user-svc"
@@ -24,10 +30,10 @@ services:
     depends_on:
       - "postgres"
     volumes:
-      - ./docker-wait-for-postgres.sh:/docker-wait-for-postgres.sh
+      - ./docker-wait-for-it.sh:/docker-wait-for-it.sh
     entrypoint:
-     - /docker-wait-for-postgres.sh
-    command: ["postgres", "go run main.go"]
+     - /docker-wait-for-it.sh
+    command: ["5","postgres", "go run main.go"]
     environment:
       - hosts_user_address
       - hosts_user_port
