@@ -34,6 +34,33 @@ $ npm install
 
 <br>
 
+## Run Local Services in Docker Containers
+Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed.
+Installing Docker Desktop comes with `docker-compose`.
+
+The following commands will start local docker containers for:
+1. postgres db
+1. hwsc-app-gateway-svc
+1. hwsc-user-svc
+1. TODO add more later
+
+Starting at root of `hwsc-frontend`, run the following:
+
+```
+$ cd docker
+$ docker-compose up
+```
+
+You can usually stop your containers successfully with `ctrl + c`.
+
+Sometimes that command will prematurely abort and won't stop all containers. 
+In that case follow up with `$ docker-compose stop`.
+
+Or just use `$ docker-compose stop`.
+
+
+<br>
+
 ## IDE Linting setup (after npm install)
 
 ### JetBrains WebStorm (v: 2019.1.1)
