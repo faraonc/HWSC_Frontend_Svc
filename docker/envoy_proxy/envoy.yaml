@@ -21,7 +21,7 @@ static_resources:
                       domains: ["*"]
                       routes:
                         - match: { prefix: "/" }
-                          route: { cluster: app }
+                          route: { cluster: hwsc-app-gateway }
                       cors:
                         allow_origin: ["*"]
                         allow_methods: GET, PUT, DELETE, POST, OPTIONS
@@ -33,22 +33,17 @@ static_resources:
                   - name: envoy.cors
                   - name: envoy.router
   clusters:
-    - name: app
+    - name: hwsc-app-gateway
       connect_timeout: 25s
       type: strict_dns
       http2_protocol_options: {}
       lb_policy: round_robin
       load_assignment:
-        cluster_name: app
+        cluster_name: dev-app-gateway-svc
         endpoints:
           - lb_endpoints:
               - endpoint:
                   address:
                     socket_address:
-                      address: app
+                      address: dev-app-gateway-svc
                       port_value: 50055
-
-# listeners: tells envoy to bind to a port
-# listerner has filters which tells the listener what to do with the requests it receives
-# envoy.http_connection_manager filter is used for proxying HTTP requests
-# the HTTP connection manager has a further list of HTTP filters that it applies

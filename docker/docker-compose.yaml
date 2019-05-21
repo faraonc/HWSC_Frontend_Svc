@@ -6,21 +6,16 @@ services:
   envoy-proxy:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: envoy_proxy/Dockerfile
     container_name: "dev-envoy-proxy"
     volumes:
-      - ./envoy.yaml:/etc/envoy.yaml
-    networks:
-      - hwsc-dev-network
-    expose:
-      - "50056"
-      - "9901"
+      - ./envoy_proxy/envoy.yaml:/etc/envoy.yaml
     ports:
       - "50056:50056"
       - "9901:9901"
-  app:
+  app-gateway-svc:
     image: "hwsc/hwsc-app-gateway-svc:int"
-    container_name: "app"
+    container_name: "dev-app-gateway-svc"
     ports:
       - "50055:50055"
     depends_on:
@@ -28,10 +23,6 @@ services:
       - "user-svc"
     volumes:
       - ./docker-wait-for-it.sh:/docker-wait-for-it.sh
-    networks:
-      hwsc-dev-network:
-        aliases:
-          - app
     entrypoint:
       - /docker-wait-for-it.sh
     command: ["10", "user-svc", "go run main.go"]
@@ -51,10 +42,6 @@ services:
       - "postgres"
     volumes:
       - ./docker-wait-for-it.sh:/docker-wait-for-it.sh
-    networks:
-      hwsc-dev-network:
-        aliases:
-          - user-svc
     entrypoint:
      - /docker-wait-for-it.sh
     command: ["5","postgres", "go run main.go"]
@@ -77,12 +64,3 @@ services:
     container_name: "dev-postgres"
     ports:
       - "5432:5432"
-    networks:
-      hwsc-dev-network:
-        aliases:
-          - postgres
-
-networks:
-  hwsc-dev-network: {}
-
-
