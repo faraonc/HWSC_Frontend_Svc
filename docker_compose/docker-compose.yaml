@@ -3,8 +3,24 @@ version: '3'
 # example: environment > hosts_user_address=user_svc
 # the "user_svc" refers to the service named "user-svc" docker-compose started up
 services:
-  app-gateway-svc:
+  envoy-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "dev-envoy-proxy"
+    volumes:
+      - ./envoy.yaml:/etc/envoy.yaml
+    networks:
+      - hwsc-dev-network
+    expose:
+      - "50056"
+      - "9901"
+    ports:
+      - "50056:50056"
+      - "9901:9901"
+  app:
     image: "hwsc/hwsc-app-gateway-svc:int"
+    container_name: "app"
     ports:
       - "50055:50055"
     depends_on:
@@ -12,6 +28,10 @@ services:
       - "user-svc"
     volumes:
       - ./docker-wait-for-it.sh:/docker-wait-for-it.sh
+    networks:
+      hwsc-dev-network:
+        aliases:
+          - app
     entrypoint:
       - /docker-wait-for-it.sh
     command: ["10", "user-svc", "go run main.go"]
@@ -31,6 +51,10 @@ services:
       - "postgres"
     volumes:
       - ./docker-wait-for-it.sh:/docker-wait-for-it.sh
+    networks:
+      hwsc-dev-network:
+        aliases:
+          - user-svc
     entrypoint:
      - /docker-wait-for-it.sh
     command: ["5","postgres", "go run main.go"]
@@ -53,5 +77,12 @@ services:
     container_name: "dev-postgres"
     ports:
       - "5432:5432"
+    networks:
+      hwsc-dev-network:
+        aliases:
+          - postgres
+
+networks:
+  hwsc-dev-network: {}
 
 
