@@ -36,12 +36,12 @@ export default class App extends Vue {
     const request: AppGatewayServiceRequest = new AppGatewayServiceRequest();
 
     // TODO need to make some sort of metadata interface as a type
+    const encodedDummyUser: string = window.btoa(`${process.env.VUE_APP_DUMMY_EMAIL}:${process.env.VUE_APP_DUMMY_PASSWORD}`);
     const metadata = {
-      'custom-header-1': 'value1'
+      'custom-header-1': 'value1',
+      authorization: `Basic ${encodedDummyUser}`,
     };
 
-    console.log('testing env: ', process.env.VUE_APP_DUMMY_EMAIL)
-    console.log('testing env: ', process.env.VUE_APP_DUMMY_PASSWORD)
 
     this.client.getStatus(request, metadata, (err, res) => {
       console.log('err', err);
