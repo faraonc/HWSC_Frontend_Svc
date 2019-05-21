@@ -20,8 +20,8 @@ $ npm install -g @vue/cli
 ## Local Environment Configurations Required
 There are 3 `.env` files required for `testing`, `development`, and `production`:
 1. .env.test.local
-1. .env.dev.local
-1. .env.prod.local
+1. .env.development.local
+1. .env.production.local
 
 Config files available in our slack channel
 

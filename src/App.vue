@@ -25,6 +25,9 @@ export default class App extends Vue {
   client: AppGatewayServiceClient = undefined as any;
 
   created() {
+  }
+
+  mounted() {
     this.client = new AppGatewayServiceClient('http://localhost:50056', null, null);
     this.getStatus();
   }
@@ -33,7 +36,12 @@ export default class App extends Vue {
     const request: AppGatewayServiceRequest = new AppGatewayServiceRequest();
 
     // TODO need to make some sort of metadata interface as a type
-    const metadata = { 'custom-header-1': 'value1' };
+    const metadata = {
+      'custom-header-1': 'value1'
+    };
+
+    console.log('testing env: ', process.env.VUE_APP_DUMMY_EMAIL)
+    console.log('testing env: ', process.env.VUE_APP_DUMMY_PASSWORD)
 
     this.client.getStatus(request, metadata, (err, res) => {
       console.log('err', err);
