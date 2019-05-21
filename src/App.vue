@@ -22,7 +22,7 @@ import HelloI18n from './components/HelloI18n.vue';
   },
 })
 export default class App extends Vue {
-  client = undefined as any;
+  client: AppGatewayServiceClient = undefined as any;
 
   created() {
     this.client = new AppGatewayServiceClient('http://localhost:50056', null, null);
@@ -30,10 +30,12 @@ export default class App extends Vue {
   }
 
   getStatus() {
-    const getRequest = new AppGatewayServiceRequest();
+    const request: AppGatewayServiceRequest = new AppGatewayServiceRequest();
 
+    // TODO need to make some sort of metadata interface as a type
     const metadata = { 'custom-header-1': 'value1' };
-    this.client.getStatus(getRequest, metadata, (err, res) => {
+
+    this.client.getStatus(request, metadata, (err, res) => {
       console.log('err', err);
       console.log('res', res);
     });
