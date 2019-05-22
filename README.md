@@ -20,8 +20,8 @@ $ npm install -g @vue/cli
 ## Local Environment Configurations Required
 There are 3 `.env` files required for `testing`, `development`, and `production`:
 1. .env.test.local
-1. .env.dev.local
-1. .env.prod.local
+1. .env.development.local
+1. .env.production.local
 
 Config files available in our slack channel
 
@@ -31,33 +31,6 @@ Config files available in our slack channel
 ```
 $ npm install
 ```
-
-<br>
-
-## Run Local Services in Docker Containers
-Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed.
-Installing Docker Desktop comes with `docker-compose`.
-
-The following commands will start local docker containers for:
-1. postgres db
-1. hwsc-app-gateway-svc
-1. hwsc-user-svc
-1. TODO add more later
-
-Starting at root of `hwsc-frontend`, run the following:
-
-```
-$ cd docker
-$ docker-compose up
-```
-
-You can usually stop your containers successfully with `ctrl + c`.
-
-Sometimes that command will prematurely abort and won't stop all containers. 
-In that case follow up with `$ docker-compose stop`.
-
-Or just use `$ docker-compose stop`.
-
 
 <br>
 
@@ -93,11 +66,37 @@ Or just use `$ docker-compose stop`.
 
 <br>
 
-## Run projects with CLI npm commands
+## Run projects with CLI commands
 #### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
+
+** To make RPC's to work within the app in dev mode, you need to also run services in Docker Container (below)
+
+#### Run Services in Docker Containers
+Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed.
+Installing Docker Desktop comes with `docker-compose`.
+
+The following commands will start local docker containers for:
+1. postgres db
+1. hwsc-app-gateway-svc
+1. hwsc-user-svc
+1. TODO add more later
+
+Starting at root of `hwsc-frontend`, run the following:
+
+```
+$ cd docker
+$ docker-compose up
+```
+
+You can usually stop your containers successfully with `ctrl + c`.
+
+Sometimes that command will prematurely abort and won't stop all containers. 
+In that case follow up with `$ docker-compose stop`.
+
+Or just use `$ docker-compose stop`.
 
 #### Compiles and minifies for production
 ```

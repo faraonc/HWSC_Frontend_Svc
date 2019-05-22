@@ -1,12 +1,34 @@
 version: '3'
 
-# example: environment > hosts_user_address=user_svc
+# example: environment.hosts_user_address=user_svc
 # the "user_svc" refers to the service named "user-svc" docker-compose started up
+
+# envoy-proxy.command: dev-app-gateway-svc refers to app-gateway-svc docker container_name
+# container name has to match because it is referenced in envoy.yaml
+
 services:
+  envoy-proxy:
+    build:
+      context: .
+      dockerfile: envoy_proxy/Dockerfile
+    container_name: "dev-envoy-proxy"
+    volumes:
+      - ./envoy_proxy/envoy.yaml:/tmp/envoy.yaml.tmp
+      - ./envoy_proxy/docker-entrypoint.sh:/docker-entrypoint.sh
+    ports:
+      - "${envoyproxy_port}:${envoyproxy_port}"
+      - "${envoyproxy_admin_port}:${envoyproxy_admin_port}"
+    command: ["dev-app-gateway-svc"]
+    environment:
+      - envoyproxy_port
+      - envoyproxy_admin_port
+      - envoyproxy_address
+      - hosts_app_port
   app-gateway-svc:
     image: "hwsc/hwsc-app-gateway-svc:int"
+    container_name: "dev-app-gateway-svc"
     ports:
-      - "50055:50055"
+      - "${hosts_app_port}:${hosts_app_port}"
     depends_on:
       - "postgres"
       - "user-svc"
@@ -26,7 +48,7 @@ services:
     image: "hwsc/hwsc-user-svc:int"
     container_name: "dev-user-svc"
     ports:
-      - "50052:50052"
+      - "${hosts_user_port}:${hosts_user_port}"
     depends_on:
       - "postgres"
     volumes:
@@ -52,6 +74,4 @@ services:
     image: "hwsc/hwsc-user-svc-psql:test-int"
     container_name: "dev-postgres"
     ports:
-      - "5432:5432"
-
-
+      - "${hosts_postgres_port}:${hosts_postgres_port}"

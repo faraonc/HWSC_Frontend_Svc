@@ -1,0 +1,51 @@
+admin:
+  access_log_path: /tmp/admin_access.log
+  address:
+    socket_address: { address: ${envoyproxy_address}, port_value: ${envoyproxy_admin_port} }
+
+static_resources:
+  listeners:
+    - name: listener_0
+      address:
+        socket_address: { address: ${envoyproxy_address}, port_value: ${envoyproxy_port} }
+      filter_chains:
+        - filters:
+            - name: envoy.http_connection_manager
+              config:
+                codec_type: auto
+                stat_prefix: ingress_http
+                route_config:
+                  name: local_route
+                  virtual_hosts:
+                    - name: local_service
+                      domains: ["*"]
+                      routes:
+                        - match: { prefix: "/" }
+                          route: { cluster: hwsc-app-gateway }
+                      cors:
+                        allow_origin: ["*"]
+                        allow_methods: GET, PUT, DELETE, POST, OPTIONS
+                        allow_headers: authorization,keep-alive,user-agent,cache-control,content-type,content-transfer-encoding,custom-header-1,x-accept-content-transfer-encoding,x-accept-response-streaming,x-user-agent,x-grpc-web
+                        max_age: "1728000"
+                        expose_headers: custom-header-1,grpc-status,grpc-message
+                http_filters:
+                  - name: envoy.grpc_web
+                  - name: envoy.cors
+                  - name: envoy.router
+  clusters:
+    - name: hwsc-app-gateway
+      connect_timeout: 25s
+      type: strict_dns
+      http2_protocol_options: {}
+      lb_policy: round_robin
+      load_assignment:
+        cluster_name: ${app_gateway_container}
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: ${app_gateway_container}
+                      port_value: ${hosts_app_port}
+
+# cluster_name, address refers to dockers container name
