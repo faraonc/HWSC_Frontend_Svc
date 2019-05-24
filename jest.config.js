@@ -1,4 +1,6 @@
 module.exports = {
+  collectCoverage: true,
+  coverageReporters: ['text', 'text-summary', 'html'],
   moduleFileExtensions: [
     'js',
     'jsx',

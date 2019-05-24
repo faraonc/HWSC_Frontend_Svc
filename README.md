@@ -136,6 +136,9 @@ npm run test:e2e
 ```
 
 #### Run your unit tests
+After you run this command, jest will create a `coverage` directory in root of `hwsc-frontend`.
+You can view code coverage results in the browser by clicking on index.html and opening in browser.
+
 ```
 npm run test:unit
 ```
