@@ -67,14 +67,14 @@ $ npm install
 <br>
 
 ## Run projects with CLI commands
-#### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
 ** To make RPC's to work within the app in dev mode, you need to also run services in Docker Container (below)
 
-#### Run Services in Docker Containers
+### Run Services in Docker Containers
 Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed.
 Installing Docker Desktop comes with `docker-compose`.
 
@@ -98,7 +98,7 @@ In that case follow up with `$ docker-compose stop`.
 
 Or just use `$ docker-compose stop`.
 
-#### Compiles and minifies for production
+### Compiles and minifies for production
 ```
 npm run build
 ```

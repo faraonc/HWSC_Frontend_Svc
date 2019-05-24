@@ -13,7 +13,7 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest',
   },
   transformIgnorePatterns: [
-    '/node_modules/',
+    '/node_modules/(?!@hwsc/hwsc-api-blocks-lisa-test/protobuf/hwsc-app-gateway-svc/app/hwsc-app-gateway-svcServiceClientPb.ts)',
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
