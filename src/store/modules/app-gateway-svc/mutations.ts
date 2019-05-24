@@ -1,14 +1,15 @@
 import { MutationTree } from 'vuex';
-import * as types from './types';
+import { ModuleState } from './types';
 import * as mutation from './types-mutations';
+import { AppGatewayServiceClient, grpc } from '../../root-types';
 
 // eslint-disable-next-line import/prefer-default-export
-export const mutations: MutationTree<types.ModuleState> = {
-  [mutation.SET_HTTP_HEADER](state, payload: types.grpc.Metadata) {
+export const mutations: MutationTree<ModuleState> = {
+  [mutation.SET_HTTP_HEADER](state, payload: grpc.Metadata) {
     Object.assign(state, { httpHeader: payload });
     // state.httpHeader = payload;
   },
-  [mutation.SET_GRPC_CLIENT](state, payload: types.AppGatewayServiceClient) {
+  [mutation.SET_GRPC_CLIENT](state, payload: AppGatewayServiceClient) {
     Object.assign(state, { grpcClient: payload });
   },
 };

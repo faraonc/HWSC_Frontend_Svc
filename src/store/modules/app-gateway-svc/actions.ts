@@ -1,12 +1,17 @@
 import { Commit, ActionPayload } from 'vuex';
-import * as types from './types';
+import { ModuleState } from './types';
 import * as mutation from './types-mutations';
 import * as consts from '../../../consts/general';
-import { RootState } from '../../root-types';
+import {
+  RootState,
+  AppGatewayServiceRequest,
+  AppGatewayServiceClient,
+  grpc,
+} from '../../root-types';
 
 
 interface ActionContext {
-  state: types.ModuleState;
+  state: ModuleState;
   rootState: RootState;
   commit: Commit;
   payload?: ActionPayload;
@@ -22,7 +27,7 @@ export const setNewClient = ({ state, commit }: ActionContext): any => {
   }
 
   // eslint-disable-next-line max-len
-  const client: types.AppGatewayServiceClient = new types.AppGatewayServiceClient(hostname, null, null);
+  const client: AppGatewayServiceClient = new AppGatewayServiceClient(hostname, null, null);
   commit(mutation.SET_GRPC_CLIENT, client);
 };
 
@@ -37,12 +42,12 @@ export const setNewHttpHeader = ({ state, commit }: ActionContext): any => {
     authType = consts.BASIC_AUTH;
   }
 
-  const metadata: types.grpc.Metadata = { authorization: `${authType}${token}` };
+  const metadata: grpc.Metadata = { authorization: `${authType}${token}` };
   commit(mutation.SET_HTTP_HEADER, metadata);
 };
 
 export const getStatus = ({ state, payload }: ActionContext): any => {
-  const request: types.AppGatewayServiceRequest = new types.AppGatewayServiceRequest();
+  const request: AppGatewayServiceRequest = new AppGatewayServiceRequest();
   state.grpcClient.getStatus(request, state.httpHeader, (err, res) => {
     console.log('err', err);
     console.log('res', res);
