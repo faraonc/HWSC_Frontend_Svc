@@ -11,10 +11,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { AppGatewayServiceRequest } from '@hwsc/hwsc-api-blocks-lisa-test/protobuf/hwsc-app-gateway-svc/app/hwsc-app-gateway-svc_pb';
-import { AppGatewayServiceClient } from '@hwsc/hwsc-api-blocks-lisa-test/protobuf/hwsc-app-gateway-svc/app/hwsc-app-gateway-svcServiceClientPb';
+import { State, Action, namespace } from 'vuex-class';
 
+import * as gatewayActions from './store/modules/gateway/actions';
+import { gateway } from './store/types';
 import HelloI18n from './components/HelloI18n.vue';
+
+const storeGateway = namespace(gateway);
 
 @Component({
   components: {
@@ -22,31 +25,17 @@ import HelloI18n from './components/HelloI18n.vue';
   },
 })
 export default class App extends Vue {
-  client: AppGatewayServiceClient = undefined as any;
+  @storeGateway.Action(gatewayActions.getStatus.name) storeGetStatus: any;
+
+  @storeGateway.Action(gatewayActions.setNewClient.name) storeSetNewClient: any;
+
+  @storeGateway.Action(gatewayActions.initAuthHeader.name) storeInitAuthHeader: any;
 
   created() {
-  }
-
-  mounted() {
-    this.client = new AppGatewayServiceClient('http://localhost:50056', null, null);
-    this.getStatus();
-  }
-
-  getStatus() {
-    const request: AppGatewayServiceRequest = new AppGatewayServiceRequest();
-
-    // TODO need to make some sort of metadata interface as a type
-    const encodedDummyUser: string = window.btoa(`${process.env.VUE_APP_DUMMY_EMAIL}:${process.env.VUE_APP_DUMMY_PASSWORD}`);
-    const metadata = {
-      'custom-header-1': 'value1',
-      authorization: `Basic ${encodedDummyUser}`,
-    };
-
-
-    this.client.getStatus(request, metadata, (err, res) => {
-      console.log('err', err);
-      console.log('res', res);
-    });
+    console.log('app created');
+    this.storeSetNewClient();
+    this.storeInitAuthHeader();
+    this.storeGetStatus();
   }
 }
 </script>

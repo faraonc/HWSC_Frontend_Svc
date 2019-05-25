@@ -1,8 +1,14 @@
 # hwsc-frontend
 
 ## Coding Rules & Guidelines
+
+#### General Guidelines
 Read through 
-[Frontend's wiki pages](https://hwsc-org.github.io/wikis/frontend-svc/general.html)
+[Frontend's wiki pages](https://hwsc-org.github.io/wikis/frontend-svc/general.html) to get started.
+
+#### Vuex Guideline
+Read through [Vuex Guideline](https://github.com/hwsc-org/hwsc-frontend/src/store/README.md) to understand
+how our state management is organized.
 
 <br>
 
@@ -56,6 +62,8 @@ $ npm install
 1. Click OK
 
 <br>
+
+
    
 ## JetBrains WebStorm Settings to adhere to vue style guideline
 #### Remove IDE auto indenting in newlines in `<script>` and `<style>` tag:
@@ -67,14 +75,14 @@ $ npm install
 <br>
 
 ## Run projects with CLI commands
-#### Compiles and hot-reloads for development
+### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
 ** To make RPC's to work within the app in dev mode, you need to also run services in Docker Container (below)
 
-#### Run Services in Docker Containers
+### Run Services in Docker Containers
 Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed.
 Installing Docker Desktop comes with `docker-compose`.
 
@@ -98,7 +106,7 @@ In that case follow up with `$ docker-compose stop`.
 
 Or just use `$ docker-compose stop`.
 
-#### Compiles and minifies for production
+### Compiles and minifies for production
 ```
 npm run build
 ```
@@ -136,6 +144,9 @@ npm run test:e2e
 ```
 
 #### Run your unit tests
+After you run this command, jest will create a `coverage` directory in root of `hwsc-frontend`.
+You can view code coverage results in the browser by clicking on index.html and opening in browser.
+
 ```
 npm run test:unit
 ```
