@@ -18,9 +18,9 @@ interface ActionContext {
 }
 
 export const setNewClient = ({ state, commit }: ActionContext): any => {
-  const hostname: string = process.env.VUE_APP_HOST_NAME == null ? '' : process.env.VUE_APP_HOST_NAME;
+  const hostname: string = process.env.VUE_APP_HOST_NAME || '';
 
-  if (hostname.length === 0) {
+  if (!hostname) {
     // TODO route to error 50X page
     console.error('setNewClient: VUE_APP_HOST_NAME not loaded');
     return;
@@ -34,10 +34,11 @@ export const initAuthHeader = ({ state, commit }: ActionContext): any => {
   let token: string | null = window.localStorage.getItem(consts.LOCAL_STORAGE_TOKEN_KEY);
   let authType: string = consts.USER_AUTH;
 
-  if (token == null) {
+  if (!token) {
     const dummyEmail: string | undefined = process.env.VUE_APP_DUMMY_EMAIL;
     const dummyPassword: string | undefined = process.env.VUE_APP_DUMMY_PASSWORD;
-    if (dummyEmail == null && dummyPassword == null) {
+
+    if (!dummyEmail || !dummyPassword) {
       // TODO route to error 50X page
       console.error('initAuthHeader: VUE_APP_DUMMY_EMAIL &/or VUE_APP_DUMMY_PASSWORD not loaded');
       return;

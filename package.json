@@ -14,7 +14,8 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@hwsc/hwsc-api-blocks-lisa-test": "0.0.3",
+    "@hwsc/hwsc-api-blocks": "0.0.1",
+    "@types/google-protobuf": "^3.2.7",
     "core-js": "^3.0.1",
     "grpc-web": "^1.0.4",
     "vue": "^2.6.10",
