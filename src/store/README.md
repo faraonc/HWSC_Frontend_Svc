@@ -6,7 +6,7 @@ The types files will help us utilize IDE's suggestion tool. It gives us an overv
 
 Each store module will contain the following files:
 1. `index.ts`
-1. `states.ts`
+1. `state.ts`
 1. `getters.ts`
 1. `actions.ts`
 1. `mutations.ts`
@@ -32,8 +32,9 @@ export const appGateway: Module<ModuleState, RootState> = {
 
 There is `index.ts` at root of the store to bring all other store modules together.
 
-### states.ts
-Contains the state of the store. Best to design state before you start coding.
+### state.ts
+Contains the state of the module and is shared with all the `vue components`. 
+Best to design state before you start coding.
 
 Any special type definitions are defined in its `types.ts` file as interfaces.
 
@@ -45,8 +46,8 @@ TODO
 ### actions.ts
 Contains exported defined action methods for the store module.
 
-The difference between `mutations` and `actions` is that `actions` contains the heavy logic, 
-`mutations` does not contain logic but just changes state.
+`Actions` is the business logic and can commit multiple `mutations` at a time. 
+`Mutations` may have logic dealing with mutating the state.
  
 Actions should not mutate any state directly. Any state that needs to be mutated in actions
 should be committed using `commit()`.

@@ -13,11 +13,11 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { State, Action, namespace } from 'vuex-class';
 
-import * as gatewayActions from './store/modules/app-gateway-svc/actions';
-import { appGateway } from './store/root-types';
+import * as gatewayActions from './store/modules/gateway/actions';
+import { gateway } from './store/types';
 import HelloI18n from './components/HelloI18n.vue';
 
-const storeAppGateway = namespace(appGateway);
+const storeGateway = namespace(gateway);
 
 @Component({
   components: {
@@ -25,14 +25,16 @@ const storeAppGateway = namespace(appGateway);
   },
 })
 export default class App extends Vue {
-  @storeAppGateway.Action(gatewayActions.getStatus.name) storeGetStatus: any;
-  @storeAppGateway.Action(gatewayActions.setNewClient.name) storeSetNewClient: any;
-  @storeAppGateway.Action(gatewayActions.setNewHttpHeader.name) storeSetNewHttpHeader: any;
+  @storeGateway.Action(gatewayActions.getStatus.name) storeGetStatus: any;
+
+  @storeGateway.Action(gatewayActions.setNewClient.name) storeSetNewClient: any;
+
+  @storeGateway.Action(gatewayActions.initAuthHeader.name) storeInitAuthHeader: any;
 
   created() {
     console.log('app created');
     this.storeSetNewClient();
-    this.storeSetNewHttpHeader();
+    this.storeInitAuthHeader();
     this.storeGetStatus();
   }
 }

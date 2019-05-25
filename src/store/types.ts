@@ -8,5 +8,10 @@ export { AppGatewayServiceClient, AppGatewayServiceRequest, grpc };
 // empty object because we have no root states right now
 export interface RootState {}
 
+export interface GatewayState {
+  grpcClient: AppGatewayServiceClient;
+  authHeader: grpc.Metadata;
+}
+
 // store module names
-export const appGateway = 'appGateway';
+export const gateway = 'gateway';

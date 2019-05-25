@@ -1,8 +1,14 @@
 # hwsc-frontend
 
 ## Coding Rules & Guidelines
+
+#### General Guidelines
 Read through 
-[Frontend's wiki pages](https://hwsc-org.github.io/wikis/frontend-svc/general.html)
+[Frontend's wiki pages](https://hwsc-org.github.io/wikis/frontend-svc/general.html) to get started.
+
+#### Vuex Guideline
+Read through [Vuex Guideline](https://github.com/hwsc-org/hwsc-frontend/src/store/README.md) to understand
+how our state management is organized.
 
 <br>
 
@@ -56,6 +62,8 @@ $ npm install
 1. Click OK
 
 <br>
+
+
    
 ## JetBrains WebStorm Settings to adhere to vue style guideline
 #### Remove IDE auto indenting in newlines in `<script>` and `<style>` tag:

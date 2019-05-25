@@ -1,15 +1,15 @@
-import { mutations } from '@/store/modules/app-gateway-svc/mutations';
-import { state } from '@/store/modules/app-gateway-svc/states';
-import * as mutation from '@/store/modules/app-gateway-svc/types-mutations';
-import * as types from '@/store/root-types';
+import { mutations } from '@/store/modules/gateway/mutations';
+import { state } from '@/store/modules/gateway/state';
+import * as mutation from '@/store/modules/gateway/types-mutations';
+import * as types from '@/store/types';
 
-describe(mutation.SET_HTTP_HEADER, () => {
+describe(mutation.SET_AUTH_HEADER, () => {
   const { SET_HTTP_HEADER } = mutations;
 
   it('should equal to payload', () => {
     const hostname: string = 'test-address';
     SET_HTTP_HEADER(state, hostname);
-    expect(state.httpHeader).toEqual(hostname);
+    expect(state.authHeader).toEqual(hostname);
   });
 });
 
@@ -21,7 +21,8 @@ describe(mutation.SET_HTTP_HEADER, () => {
 //   it('should equal to AppGatewayServiceClient object', () => {
 //     let hostname: string | undefined = process.env.VUE_APP_HOST_NAME;
 //     hostname = hostname == null ? '' : hostname;
-//     const client: types.AppGatewayServiceClient = new types.AppGatewayServiceClient(hostname, null, null);
+//     const client: types.AppGatewayServiceClient =
+//     new types.AppGatewayServiceClient(hostname, null, null);
 //
 //     SET_GRPC_CLIENT(state, client);
 //     expect(state.httpHeader).toEqual(client);

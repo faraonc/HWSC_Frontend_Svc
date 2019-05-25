@@ -1,54 +1,58 @@
 import { Commit, ActionPayload } from 'vuex';
-import { ModuleState } from './types';
 import * as mutation from './types-mutations';
 import * as consts from '../../../consts/general';
 import {
+  GatewayState,
   RootState,
   AppGatewayServiceRequest,
   AppGatewayServiceClient,
   grpc,
-} from '../../root-types';
+} from '../../types';
 
 
 interface ActionContext {
-  state: ModuleState;
+  state: GatewayState;
   rootState: RootState;
   commit: Commit;
   payload?: ActionPayload;
 }
 
 export const setNewClient = ({ state, commit }: ActionContext): any => {
-  const address: string | undefined = process.env.VUE_APP_HOST_NAME;
-  const hostname: string = address == null ? '' : address;
+  const hostname: string = process.env.VUE_APP_HOST_NAME == null ? '' : process.env.VUE_APP_HOST_NAME;
 
   if (hostname.length === 0) {
-    // TODO not sure what to do here
-    console.error('setNewClient: VUE_APP_HOST_NAME env var not loaded');
+    // TODO route to error 50X page
+    console.error('setNewClient: VUE_APP_HOST_NAME not loaded');
+    return;
   }
 
-  // eslint-disable-next-line max-len
   const client: AppGatewayServiceClient = new AppGatewayServiceClient(hostname, null, null);
   commit(mutation.SET_GRPC_CLIENT, client);
 };
 
-export const setNewHttpHeader = ({ state, commit }: ActionContext): any => {
+export const initAuthHeader = ({ state, commit }: ActionContext): any => {
   let token: string | null = window.localStorage.getItem(consts.LOCAL_STORAGE_TOKEN_KEY);
   let authType: string = consts.USER_AUTH;
 
   if (token == null) {
-    token = window.btoa(
-      `${process.env.VUE_APP_DUMMY_EMAIL}:${process.env.VUE_APP_DUMMY_PASSWORD}`,
-    );
+    const dummyEmail: string | undefined = process.env.VUE_APP_DUMMY_EMAIL;
+    const dummyPassword: string | undefined = process.env.VUE_APP_DUMMY_PASSWORD;
+    if (dummyEmail == null && dummyPassword == null) {
+      // TODO route to error 50X page
+      console.error('initAuthHeader: VUE_APP_DUMMY_EMAIL &/or VUE_APP_DUMMY_PASSWORD not loaded');
+      return;
+    }
+    token = window.btoa(`${dummyEmail}:${dummyPassword}`);
     authType = consts.BASIC_AUTH;
   }
 
   const metadata: grpc.Metadata = { authorization: `${authType}${token}` };
-  commit(mutation.SET_HTTP_HEADER, metadata);
+  commit(mutation.SET_AUTH_HEADER, metadata);
 };
 
 export const getStatus = ({ state, payload }: ActionContext): any => {
   const request: AppGatewayServiceRequest = new AppGatewayServiceRequest();
-  state.grpcClient.getStatus(request, state.httpHeader, (err, res) => {
+  state.grpcClient.getStatus(request, state.authHeader, (err, res) => {
     console.log('err', err);
     console.log('res', res);
   });
