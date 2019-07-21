@@ -32,7 +32,6 @@ export default class App extends Vue {
   @storeGateway.Action(gatewayActions.initAuthHeader.name) storeInitAuthHeader: any;
 
   created() {
-    console.log('app created');
     this.storeSetNewClient();
     this.storeInitAuthHeader();
     this.storeGetStatus();

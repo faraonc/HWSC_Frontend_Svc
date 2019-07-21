@@ -15,11 +15,12 @@ how our state management is organized.
 ## Global Tools
 Needed to install `vue-cli plugins` and using `vue ui`
 
-At the time of this writing, Vue CLI version was `v4.0.0-alpha.0`.
-
 ```
 $ npm install -g @vue/cli
 ```
+
+## Update dependencies
+`npm update --save/--save-dev -f`
 
 <br>
 
@@ -42,7 +43,7 @@ $ npm install
 
 ## IDE Linting setup (after npm install)
 
-### JetBrains WebStorm (v: 2019.1.1)
+### JetBrains WebStorm
 
 #### Set `stylelint` for on the fly SCSS linting
 1. Install `IntelliJ Stylelint Plugin`:
