@@ -62,9 +62,9 @@ $ npm install
 1. Click on `Automatic ESLint Configuration`
 1. Click OK
 
-#### Set `=tslint` for on the fly eslinting 
-1. Go to: Preferences > Languages & Frameworks > JavaScript > Code Quality Tools > Eslint
-1. Click on `Automatic ESLint Configuration`
+#### Set `=tslint` for on the fly tslinting 
+1. Go to: Preferences > Languages & Frameworks > Typescript > TSlint
+1. Click on `Automatic TSLint Configuration`
 1. Click OK
 
 <br>
