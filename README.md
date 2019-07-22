@@ -57,7 +57,12 @@ $ npm install
    - Click on `Process JS files` box
    - Click OK
    
-#### Set `eslint` for on the fly eslinting 
+#### Set `=eslint` for on the fly eslinting 
+1. Go to: Preferences > Languages & Frameworks > JavaScript > Code Quality Tools > Eslint
+1. Click on `Automatic ESLint Configuration`
+1. Click OK
+
+#### Set `=tslint` for on the fly eslinting 
 1. Go to: Preferences > Languages & Frameworks > JavaScript > Code Quality Tools > Eslint
 1. Click on `Automatic ESLint Configuration`
 1. Click OK
@@ -124,12 +129,12 @@ npm run build:dev
 npm run build:test
 ```
 
-#### Run your tests
+### Run your tests
 ```
 npm run test
 ```
 
-#### ES Lints and fixes files
+### TS Lints and fixes files
 ```
 npm run lint
 ```
@@ -139,10 +144,22 @@ npm run lint
 npm run lint:css
 ```
 
-#### Run your end-to-end tests
+
+### Run your end-to-end tests
 ```
 npm run test:e2e
 ```
+
+#### Run your unit tests
+After you run this command, jest will create a `coverage` directory in root of `hwsc-frontend`.
+You can view code coverage results in the browser by clicking on index.html and opening in browser.
+
+```
+npm run test:unit
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
 
 #### Run your unit tests
 After you run this command, jest will create a `coverage` directory in root of `hwsc-frontend`.
