@@ -10,8 +10,6 @@ Read through
 Read through [Vuex Guideline](https://github.com/hwsc-org/hwsc-frontend/src/store/README.md) to understand
 how our state management is organized.
 
-<br>
-
 ## Global Tools
 Needed to install `vue-cli plugins` and using `vue ui`
 
@@ -19,27 +17,21 @@ Needed to install `vue-cli plugins` and using `vue ui`
 $ npm install -g @vue/cli
 ```
 
-## Update dependencies
+### Update dependencies
 `npm update --save/--save-dev -f`
-
-<br>
 
 ## Local Environment Configurations Required
 There are 3 `.env` files required for `testing`, `development`, and `production`:
 1. .env.test.local
-1. .env.development.local
-1. .env.production.local
+2. .env.development.local
+3. .env.production.local
 
 Config files available in our slack channel
-
-<br>
 
 ## Project setup
 ```
 $ npm install
 ```
-
-<br>
 
 ## IDE Linting setup (after npm install)
 
@@ -51,34 +43,26 @@ $ npm install
    - Go to `Marketplace` tab
    - On search bar, type `stylelint` and press enter
    - Select and Install `IntelliJ Stylelint Plugin`
-1. Enable stylelint:
+   
+2. Enable stylelint:
    - Go to: Preferences > Languages & Frameworks > Style Sheets > Stylelint
    - Click on `enable` box
    - Click on `Process JS files` box
    - Click OK
    
+3. Ensure `.stylelintrc.json` is defined.
+   
 #### Set `=eslint` for on the fly eslinting 
 1. Go to: Preferences > Languages & Frameworks > JavaScript > Code Quality Tools > Eslint
-1. Click on `Automatic ESLint Configuration`
-1. Click OK
-
-#### Set `=tslint` for on the fly tslinting 
-1. Go to: Preferences > Languages & Frameworks > Typescript > TSlint
-1. Click on `Automatic TSLint Configuration`
-1. Click OK
-
-<br>
-
-
+2. Click on `Automatic ESLint Configuration`
+3. Click OK
    
 ## JetBrains WebStorm Settings to adhere to vue style guideline
 #### Remove IDE auto indenting in newlines in `<script>` and `<style>` tag:
 
 1. Preferences > Editor > Code Style > HTML
-1. Go to `Other` tabs
-1. Under `Do not indent children of`: add `style` and `script`
-
-<br>
+2. Go to `Other` tabs
+3. Under `Do not indent children of`: add `style` and `script`
 
 ## Run projects with CLI commands
 ### Compiles and hot-reloads for development
@@ -94,9 +78,9 @@ Installing Docker Desktop comes with `docker-compose`.
 
 The following commands will start local docker containers for:
 1. postgres db
-1. hwsc-app-gateway-svc
-1. hwsc-user-svc
-1. TODO add more later
+2. hwsc-app-gateway-svc
+3. hwsc-user-svc
+4. TODO add more later
 
 Starting at root of `hwsc-frontend`, run the following:
 
@@ -134,7 +118,7 @@ npm run build:test
 npm run test
 ```
 
-### TS Lints and fixes files
+### ES Lints and fixes files
 ```
 npm run lint
 ```
