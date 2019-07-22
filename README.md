@@ -48,14 +48,12 @@ $ npm install
    - Go to: Preferences > Languages & Frameworks > Style Sheets > Stylelint
    - Click on `enable` box
    - Click on `Process JS files` box
-   - Click OK
    
 3. Ensure `.stylelintrc.json` is defined.
    
 #### Set `=eslint` for on the fly eslinting 
 1. Go to: Preferences > Languages & Frameworks > JavaScript > Code Quality Tools > Eslint
 2. Click on `Automatic ESLint Configuration`
-3. Click OK
    
 ## JetBrains WebStorm Settings to adhere to vue style guideline
 #### Remove IDE auto indenting in newlines in `<script>` and `<style>` tag:
@@ -63,6 +61,12 @@ $ npm install
 1. Preferences > Editor > Code Style > HTML
 2. Go to `Other` tabs
 3. Under `Do not indent children of`: add `style` and `script`
+
+#### Auto identing with reformat code command `cmd + option + L`
+
+1. Preferences > Editor > Code Style > Other File Types
+2. Set tab size to 2
+3. Set indent to 2
 
 ## Run projects with CLI commands
 ### Compiles and hot-reloads for development
