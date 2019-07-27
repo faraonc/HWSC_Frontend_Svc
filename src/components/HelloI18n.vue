@@ -1,5 +1,8 @@
 <template>
-  <p>{{ $t('hello') }}</p>
+  <div>
+    <p>{{ $t('message') }}</p>
+    <p v-t="'message'"></p>
+  </div>
 </template>
 
 <script lang="ts">
@@ -9,11 +12,3 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class HelloI18n extends Vue {
 }
 </script>
-
-<i18n>
-  {
-  "en": {
-  "hello": "Hello i18n in SFC!"
-  }
-  }
-</i18n>
