@@ -2,6 +2,7 @@ import { MutationTree } from 'vuex';
 import * as mutation from './types-mutations';
 import { AppGatewayServiceClient, grpc, AppGatewayState } from '../../types';
 
+// TODO unit test
 export const mutations: MutationTree<AppGatewayState> = {
   [mutation.SET_GRPC_CLIENT](state, payload: AppGatewayServiceClient) {
     Object.assign(state, { grpcClient: payload });

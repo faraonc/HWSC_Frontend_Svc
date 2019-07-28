@@ -19,6 +19,7 @@ interface ActionContext {
   payload?: ActionPayload;
 }
 
+// TODO unit test
 export const setNewClient = ({ state, commit }: ActionContext): any => {
   const hostname: string = process.env.VUE_APP_HOST_NAME || '';
 
@@ -32,6 +33,7 @@ export const setNewClient = ({ state, commit }: ActionContext): any => {
   commit(mutation.SET_GRPC_CLIENT, client);
 };
 
+// TODO unit test
 export const initAuthHeader = ({ state, commit }: ActionContext): any => {
   let token: string | null = window.localStorage.getItem(constants.LOCAL_STORAGE_TOKEN_KEY);
   let authType: string = headers.USER_AUTH;
@@ -53,6 +55,7 @@ export const initAuthHeader = ({ state, commit }: ActionContext): any => {
   commit(mutation.SET_AUTH_HEADER, metadata);
 };
 
+// TODO unit test
 export const getStatus = ({ state, payload }: ActionContext): any => {
   const request: AppGatewayServiceRequest = new AppGatewayServiceRequest();
   state.grpcClient.getStatus(request, state.authHeader, (err, res) => {
