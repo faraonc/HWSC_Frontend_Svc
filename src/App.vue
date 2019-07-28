@@ -23,8 +23,24 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { State, Action, namespace } from 'vuex-class';
+import { appGatewayModuleName } from './store/modules';
+import * as appGatewayActions from './store/modules/app-gateway/actions';
+
+const storeAppGateway = namespace(appGatewayModuleName);
 
 @Component
 export default class App extends Vue {
+    @storeAppGateway.Action(appGatewayActions.getStatus.name) storeGetStatus: any;
+
+    @storeAppGateway.Action(appGatewayActions.setNewClient.name) storeSetNewClient: any;
+
+    @storeAppGateway.Action(appGatewayActions.initAuthHeader.name) storeInitAuthHeader: any;
+
+    created() {
+      this.storeSetNewClient();
+      this.storeInitAuthHeader();
+      this.storeGetStatus();
+    }
 }
 </script>
