@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>{{ $t('message') }}</p>
-    <p v-t="'message'"></p>
+    <p v-t="'message'" />
   </div>
 </template>
 

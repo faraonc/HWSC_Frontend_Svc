@@ -123,6 +123,7 @@ npm run test
 ```
 
 ### ES Lints and fixes files
+To extend lint rules refer to this [vue guide](https://vuejs.github.io/eslint-plugin-vue/rules/) and [eslint guide](https://eslint.org/docs/rules/)
 ```
 npm run lint
 ```
