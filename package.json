@@ -9,7 +9,7 @@
     "build:dev": "vue-cli-service build --mode development",
     "build:test": "vue-cli-service build --mode test",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
-    "lint:css": "stylelint --fix 'src/**/*.vue', 'src/styles/*.scss'",
+    "lint:css": "stylelint --fix './src/**/*.vue' './src/**/*.scss'",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },

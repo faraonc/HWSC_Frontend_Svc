@@ -13,8 +13,8 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'import/prefer-default-export': 'off',
     'max-len': [2, 120, 2, {
-      'ignoreUrls': true,
-      'ignoreStrings': true,
+      ignoreUrls: true,
+      ignoreStrings: true,
     }],
   },
   parserOptions: {

@@ -1,9 +1,9 @@
 import Vue from 'vue';
-import App from './App.vue';
-import router from './router/router';
-import store from './store';
-import i18n from './i18n';
-import vuetify from './plugins/vuetify';
+import App from '@/App.vue';
+import router from '@/router/router';
+import store from '@/stores/store';
+import i18n from '@/i18n';
+import vuetify from '@/plugins/vuetify';
 
 Vue.config.productionTip = false;
 
