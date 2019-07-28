@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { State, Action, namespace } from 'vuex-class';
+import { namespace } from 'vuex-class';
 import { appGatewayModuleName } from './store/modules';
 import * as appGatewayActions from './store/modules/app-gateway/actions';
 
