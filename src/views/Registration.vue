@@ -5,7 +5,7 @@
       v-model="firstName"
       :error-messages="nameErrors"
       :counter="32"
-      label="First Name"
+      :label="$t('registration.labels.first_name') | capitalize"
       required
       @input="$v.name.$touch()"
       @blur="$v.name.$touch()"
@@ -14,7 +14,7 @@
       v-model="lastName"
       :error-messages="nameErrors"
       :counter="32"
-      label="Last Name"
+      :label="$t('registration.labels.last_name') | capitalize"
       required
       @input="$v.name.$touch()"
       @blur="$v.name.$touch()"
@@ -22,7 +22,7 @@
     <v-text-field
       v-model="organization"
       :error-messages="nameErrors"
-      label="Organization"
+      :label="$t('registration.labels.organization') | capitalize"
       required
       @input="$v.organization.$touch()"
       @blur="$v.organization.$touch()"
@@ -30,7 +30,7 @@
     <v-text-field
       v-model="email"
       :error-messages="emailErrors"
-      label="E-mail"
+      :label="$t('registration.labels.e-mail') | capitalize"
       required
       @input="$v.email.$touch()"
       @blur="$v.email.$touch()"
@@ -39,16 +39,16 @@
       v-model="password"
       :error-messages="passwordErrors"
       :counter="60"
-      label="Password"
+      :label="$t('registration.labels.password') | capitalize"
       required
       @input="$v.password.$touch()"
       @blur="$v.password.$touch()"
     />
     <v-text-field
-      v-model="passwordConfirm"
+      v-model="confirmPassword"
       :error-messages="passwordErrors"
       :counter="60"
-      label="Confirm Password"
+      :label="$t('registration.labels.confirm_password') | capitalize"
       required
       @input="$v.password.$touch()"
       @blur="$v.password.$touch()"
@@ -57,10 +57,10 @@
       class="mr-4"
       @click="submit"
     >
-      submit
+      {{ $t('buttons.submit') }}
     </v-btn>
     <v-btn @click="clear">
-      clear
+      {{ $t('buttons.clear') }}
     </v-btn>
   </form>
 </template>
@@ -96,7 +96,7 @@ export default {
     organization: '',
     email: '',
     password: '',
-    passwordConfirm: '',
+    confirmPassword: '',
   }),
   computed: {
     nameErrors() {
@@ -133,6 +133,9 @@ export default {
       this.password = '';
       this.passwordConfirm = '';
     },
+  },
+  mounted() {
+    console.log(this);
   },
 };
 </script>

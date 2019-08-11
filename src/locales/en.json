@@ -1,5 +1,21 @@
 {
   "message": "Translation Test",
   "http_404": "HTTP 404 Not Found",
-  "email": "e-mail"
+  "email": "e-mail",
+  "buttons": {
+    "submit": "submit",
+    "clear": "clear"
+  },
+  "registration": {
+    "labels": {
+      "first_name": "first name",
+      "last_name": "last name",
+      "organization": "organization",
+      "e-mail": "e-mail",
+      "password": "password",
+      "confirm_password": "confirm password"
+    },
+    "errors": {
+    }
+  }
 }
