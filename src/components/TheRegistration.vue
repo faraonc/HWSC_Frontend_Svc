@@ -67,6 +67,8 @@ import { validationMixin } from 'vuelidate';
 import { required, maxLength, email } from 'vuelidate/lib/validators';
 import { stringMixin } from '@/mixins/string';
 import * as rules from '@/consts/rules';
+import * as gateway from '@/store/modules/gateway/index';
+
 
 export default {
   mixins: [validationMixin, stringMixin],
@@ -168,6 +170,7 @@ export default {
   methods: {
     submit() {
       this.$v.$touch();
+      // TODO backend call
     },
     clear() {
       this.$v.$reset();
@@ -180,7 +183,15 @@ export default {
     },
   },
   mounted() {
-    console.log(this);
+    this.$store.dispatch(gateway.INIT_AUTH_HEADER);
+    this.$store.dispatch(gateway.SET_NEW_CLIENT);
+    this.$store.dispatch(gateway.GET_STATUS)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>
