@@ -1,15 +1,15 @@
 <template>
   <div class="registration">
-    <registration />
+    <the-registration />
   </div>
 </template>
 <script lang="ts">
-import Registration from '@/components/TheRegistration.vue';
+import TheRegistration from '@/components/TheRegistration.vue';
 
 export default {
   name: 'RegistrationView',
   components: {
-    Registration,
+    TheRegistration,
   },
 };
 </script>
