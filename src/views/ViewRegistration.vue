@@ -4,7 +4,7 @@
   </div>
 </template>
 <script lang="ts">
-import Registration from '@/components/Registration.vue';
+import Registration from '@/components/TheRegistration.vue';
 
 export default {
   name: 'RegistrationView',
