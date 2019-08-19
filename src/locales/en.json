@@ -18,7 +18,8 @@
     "errors": {
       "length": "{0} must be at most {1} characters long",
       "required": "{0} is required",
-      "email": "must be a valid email"
+      "email": "must be a valid email",
+      "confirm_password": "fail password confirmation"
     }
   }
 }

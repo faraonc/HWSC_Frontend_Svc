@@ -39,6 +39,7 @@
       v-model="password"
       :error-messages="passwordErrors"
       :counter="passwordCounter"
+      :type="'password'"
       :label="$t('registration.labels.password') | capitalize"
       required
       @input="$v.password.$touch()"
@@ -48,6 +49,7 @@
       v-model="confirmPassword"
       :error-messages="confirmPasswordErrors"
       :counter="passwordCounter"
+      :type="'password'"
       :label="$t('registration.labels.confirm_password') | capitalize"
       required
       @input="$v.confirmPassword.$touch()"
@@ -164,6 +166,9 @@ export default {
         [this.capitalize(this.$t('registration.labels.password')), rules.MAX_PASSWORD_LEN]));
       !this.$v.confirmPassword.required && errors.push(this.$t('registration.errors.required',
         [this.capitalize(this.$t('registration.labels.confirm_password'))]));
+      this.password !== this.confirmPassword && errors.push(
+        this.capitalize(this.$t('registration.errors.confirm_password')),
+      );
       return errors;
     },
   },
