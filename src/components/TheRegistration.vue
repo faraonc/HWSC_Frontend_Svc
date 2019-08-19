@@ -69,7 +69,7 @@ import { stringMixin } from '@/mixins/string';
 import * as rules from '@/consts/rules';
 import * as gateway from '@/store/modules/gateway/index';
 
-
+// TODO unit test
 export default {
   mixins: [validationMixin, stringMixin],
   validations: {
@@ -183,14 +183,20 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch(gateway.INIT_AUTH_HEADER);
-    this.$store.dispatch(gateway.SET_NEW_CLIENT);
+    this.$store.dispatch(gateway.INIT_AUTH_HEADER)
+      .catch((err) => {
+        this.$log.error(err);
+      });
+    this.$store.dispatch(gateway.SET_NEW_CLIENT)
+      .catch((err) => {
+        this.$log.error(err);
+      });
     this.$store.dispatch(gateway.GET_STATUS)
       .then((res) => {
-        console.log(res);
+        this.$log.info(res);
       })
       .catch((err) => {
-        console.log(err);
+        this.$log.error(err);
       });
   },
 };
