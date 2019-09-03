@@ -7,7 +7,7 @@
 import TheRegistration from '@/components/TheRegistration.vue';
 
 export default {
-  name: 'RegistrationView',
+  name: 'ViewRegistration',
   components: {
     TheRegistration,
   },
