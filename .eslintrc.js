@@ -15,6 +15,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'import/prefer-default-export': 'off',
+    'no-unused-expressions': ['error', { allowShortCircuit: true }],
     'max-len': [2, 120, 2, {
       ignoreUrls: true,
       ignoreStrings: true,
