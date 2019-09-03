@@ -44,6 +44,7 @@ export const actions = {
     const hostname: string = process.env.VUE_APP_HOST_NAME || '';
 
     if (!hostname) {
+      // TODO route to error 50X page
       Vue.$log.error('undefined environment variable for app gateway');
       return Promise.reject(
         new Error('VUE_APP_HOST_NAME not loaded'),
