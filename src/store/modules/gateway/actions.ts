@@ -2,6 +2,7 @@ import { Commit, ActionPayload } from 'vuex';
 import { AppGatewayServiceClient } from '@hwsc/hwsc-api-blocks/protobuf/hwsc-app-gateway-svc/app/hwsc-app-gateway-svcServiceClientPb';
 import { AppGatewayServiceRequest } from '@hwsc/hwsc-api-blocks/protobuf/hwsc-app-gateway-svc/app/hwsc-app-gateway-svc_pb';
 import * as grpc from 'grpc-web';
+import Vue from 'vue';
 import * as headers from '@/consts/headers';
 import * as constants from '@/consts/keys';
 import * as mutation from '@/store/modules/gateway/types-mutations';
@@ -20,13 +21,12 @@ export const actions = {
   [action.INIT_AUTH_HEADER]({ state, commit }: ActionContext): Promise<any> {
     let token: string | null = window.localStorage.getItem(constants.LOCAL_STORAGE_TOKEN_KEY);
     let authType: string = headers.USER_AUTH;
-
     if (!token) {
       const dummyEmail: string | undefined = process.env.VUE_APP_DUMMY_EMAIL;
       const dummyPassword: string | undefined = process.env.VUE_APP_DUMMY_PASSWORD;
-
       if (!dummyEmail || !dummyPassword) {
         // TODO route to error 50X page
+        Vue.$log.error('undefined environment variable for registration');
         return Promise.reject(
           new Error('VUE_APP_DUMMY_EMAIL &/or VUE_APP_DUMMY_PASSWORD not loaded'),
         );
@@ -45,6 +45,7 @@ export const actions = {
 
     if (!hostname) {
       // TODO route to error 50X page
+      Vue.$log.error('undefined environment variable for app gateway');
       return Promise.reject(
         new Error('VUE_APP_HOST_NAME not loaded'),
       );
@@ -60,6 +61,7 @@ export const actions = {
       const request: AppGatewayServiceRequest = new AppGatewayServiceRequest();
       state.grpcClient.getStatus(request, state.authHeader, (err: any, res: any) => {
         if (err) {
+          Vue.$log.error('app gateway get status failure');
           reject(err);
         } else {
           resolve(res);
